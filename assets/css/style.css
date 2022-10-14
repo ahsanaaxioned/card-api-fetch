@@ -260,6 +260,10 @@ h2 {
   line-height: 25px;
   letter-spacing: 2px;
 }
+
+.btn.btn-active{
+  display: none;
+}
 /*=================================
   main styling ends here
 =================================*/
