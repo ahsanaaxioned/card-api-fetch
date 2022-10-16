@@ -1,28 +1,45 @@
 // global variable declaration start here
-const url = "https://jsonplaceholder.typicode.com/posts";
-const fetchList = document.querySelector(".fetch-list");
+const url = "https://jsonplaceholder.typicode.com/posts",
+    fetchList = document.querySelector(".fetch-list"),
+    btn = document.querySelector(".btn")
+let result,
+    limit = 10,
+    i = 0;
 // global variable declaration start here
-// element creat function start here
-function showCard(data) {
-    data.forEach(function (values) {
+// btn event start here
+fetchList.innerText = "";
+if (btn) {
+    btn.addEventListener("click", fetchCard);
+}
+function fetchCard() {
+    for (i; i < limit; i++) {
+        if (i == 99) {
+            btn.classList.add("btn-hide");
+        }
         let li = document.createElement("li");
         li.classList.add("fetch-item");
-        li.innerHTML = `<span class="heading">${values.id}</span>
-        <h3 class="title">${values.title}</h3>
-        <p class="discription">${values.body}</p>`
+        li.innerHTML = `<span class="heading">${result[i].id}</span>
+        <h3 class="title">${result[i].title}</h3>
+        <p class="discription">${result[i].body}</p>`
         fetchList.appendChild(li);
-    });
+    }
+    i = limit;
+    limit += 10;
 }
-// element creat function end here
+// btn event start here
 // fatching API start here
-function fetchApi(api) {
-    fetch(api)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            showCard(data);
-        });
-};
-fetchApi(url);
+fetch(url)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        setData(data);
+    })
+    .catch(function catchError(error) {
+        console.log(error);
+    });
+function setData(data) {
+    result = data;
+    fetchCard();
+}
 // fatching API end here
