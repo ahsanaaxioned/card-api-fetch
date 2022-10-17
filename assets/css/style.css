@@ -255,13 +255,6 @@
      font-weight: 600;
    }
    
-   .discription {
-     padding: 10px 5px;
-     font-size: 15px;
-     line-height: 25px;
-     letter-spacing: 2px;
-   }
-   
    .btn.btn-hide{ display: none; }
    /*=================================
      main styling ends here
